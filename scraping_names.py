@@ -10,6 +10,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 driver = webdriver.Firefox()
 url = 'http://www.dimfuture.net/starwars/random/generate.php'
@@ -44,5 +45,5 @@ driver.close()
 
 starwars_names_df = pd.DataFrame(names, columns = ['name'])
 now = datetime.now()
-filename  = starwars_names_%d%d%d.csv' %(now.year, now.month, now.day)
+filename  = f'starwars_names_{now.year}{now.month}{now.day}.csv'
 starwars_names_df.to_csv(filename, sep = ';', index = False, encoding = 'utf-8')
