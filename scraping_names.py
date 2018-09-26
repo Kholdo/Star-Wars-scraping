@@ -9,6 +9,7 @@ Python Version: 3.6
 import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from bs4 import BeautifulSoup
 
 driver = webdriver.Firefox()
 url = 'http://www.dimfuture.net/starwars/random/generate.php'
@@ -24,6 +25,17 @@ generate =driver.find_element_by_xpath("//input[@name='submit' and @value='Gener
 generate.click()
 print ('click submit button')
 
-# time.sleep(6)
 
+
+#Transfer info to BeautifulSoup
+starwars_names_soup=BeautifulSoup(driver.page_source, 'lxml')
+print (starwars_names_soup)
+
+
+div = starwars_names_soup.find_all('td')
+print (div)
+
+
+
+time.sleep(6)
 driver.close()
