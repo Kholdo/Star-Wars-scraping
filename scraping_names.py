@@ -14,11 +14,15 @@ driver = webdriver.Firefox()
 url = 'http://www.dimfuture.net/starwars/random/generate.php'
 driver.get(url)
 
+#Click Radio button with value 100
 cien =driver.find_element_by_xpath("//input[@name='choice' and @value='100']")
-
-
 cien.click()
-print ('click')
+print ('click radio button = 100')
+
+#Click Radio button with value 100
+generate =driver.find_element_by_xpath("//input[@name='submit' and @value='Generate!']")
+generate.click()
+print ('click submit button')
 
 # time.sleep(6)
 
