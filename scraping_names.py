@@ -31,8 +31,19 @@ print ('click submit button')
 starwars_names_soup=BeautifulSoup(driver.page_source, 'lxml')
 
 table = starwars_names_soup.find_all('table')
+print ("imprimiento tabla")
 print (table[3])
+print (type(table[3]))
+print ("tabla OK")
+print ("Imprimiento filas")
+rows = table[3].find_all("td")
+print (rows)
 
-
+names = []
+for row in rows:
+    newname = row.get_text().strip().replace(u'\xa0', u' ')
+    if newname not in names:
+        names.append(newname)
+print (names)
 time.sleep(6)
 driver.close()
