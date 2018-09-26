@@ -29,12 +29,9 @@ print ('click submit button')
 
 #Transfer info to BeautifulSoup
 starwars_names_soup=BeautifulSoup(driver.page_source, 'lxml')
-print (starwars_names_soup)
 
-
-div = starwars_names_soup.find_all('td')
-print (div)
-
+table = starwars_names_soup.find_all('table')
+print (table[3])
 
 
 time.sleep(6)
