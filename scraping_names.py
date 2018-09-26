@@ -40,5 +40,9 @@ for i in range(500):
     print ('next')
     # time.sleep(5)
 print (len(names))
-starwars_names_df = pd.DataFrame(names, columns = ['name'])
 driver.close()
+
+starwars_names_df = pd.DataFrame(names, columns = ['name'])
+now = datetime.now()
+filename  = starwars_names_%d%d%d.csv' %(now.year, now.month, now.day)
+starwars_names_df.to_csv(filename, sep = ';', index = False, encoding = 'utf-8')
