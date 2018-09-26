@@ -15,35 +15,30 @@ driver = webdriver.Firefox()
 url = 'http://www.dimfuture.net/starwars/random/generate.php'
 driver.get(url)
 
-#Click Radio button with value 100
-cien =driver.find_element_by_xpath("//input[@name='choice' and @value='100']")
-cien.click()
-print ('click radio button = 100')
-
-#Click Radio button with value 100
-generate =driver.find_element_by_xpath("//input[@name='submit' and @value='Generate!']")
-generate.click()
-print ('click submit button')
-
-
-
-#Transfer info to BeautifulSoup
-starwars_names_soup=BeautifulSoup(driver.page_source, 'lxml')
-
-table = starwars_names_soup.find_all('table')
-print ("imprimiento tabla")
-print (table[3])
-print (type(table[3]))
-print ("tabla OK")
-print ("Imprimiento filas")
-rows = table[3].find_all("td")
-print (rows)
-
 names = []
-for row in rows:
-    newname = row.get_text().strip().replace(u'\xa0', u' ')
-    if newname not in names:
-        names.append(newname)
-print (names)
-time.sleep(6)
+for i in range(500):
+    #Click Radio button with value 100
+    cien =driver.find_element_by_xpath("//input[@name='choice' and @value='100']")
+    cien.click()
+    print ('click radio button = 100')
+
+    #Click Radio button with value 100
+    generate =driver.find_element_by_xpath("//input[@name='submit' and @value='Generate!']")
+
+    generate.click()
+    print (f'click submit button {i}')
+
+    #Transfer info to BeautifulSoup
+    starwars_names_soup=BeautifulSoup(driver.page_source, 'lxml')
+    table = starwars_names_soup.find_all('table')
+    rows = table[3].find_all("td")
+    for row in rows:
+        newname = row.get_text().strip().replace(u'\xa0', u' ')
+        if newname not in names:
+            names.append([newname])
+    print(len(names))
+    print ('next')
+    # time.sleep(5)
+print (len(names))
+starwars_names_df = pd.DataFrame(names, columns = ['name'])
 driver.close()
