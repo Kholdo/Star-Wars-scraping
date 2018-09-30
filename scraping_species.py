@@ -33,10 +33,19 @@ def parse_species(url):
             species_list.append([name])
     return species_list
 
-species_total = []
+starwars_species_list = []
 
 for url in species_urls:
     species_sublist = parse_species(url)
-    species_total += species_sublist
+    starwars_species_list += species_sublist
 
-print (species_total)
+starwars_species_df = pd.DataFrame(starwars_species_list, columns = ['name'])
+now = datetime.now()
+filename  = f'starwars_species_{now.year}{now.month}{now.day}.csv'
+starwars_species_df.to_csv(filename, sep = ';', index = False, encoding = 'utf-8')
+
+end_time = datetime.now()
+print (f'End time: {end_time}')
+total_time = end_time - start_time
+print (f'Finished in: {total_time}')
+#Finished in: 0:00:02.234633
