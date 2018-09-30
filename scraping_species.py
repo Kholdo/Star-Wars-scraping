@@ -16,3 +16,27 @@ species_urls = ['https://en.wikipedia.org/wiki/List_of_Star_Wars_species_(A%E2%8
                 'https://en.wikipedia.org/wiki/List_of_Star_Wars_species_(K%E2%80%93O)',
                 'https://en.wikipedia.org/wiki/List_of_Star_Wars_species_(P%E2%80%93T)',
                 'https://en.wikipedia.org/wiki/List_of_Star_Wars_species_(U%E2%80%93Z)']
+
+start_time = datetime.now()
+print (f'Start time: {start_time}')
+
+def parse_species(url):
+    species_list = []
+    url_species_req = requests.get(url)
+    species_html = url_species_req.text
+    species_soup = BeautifulSoup(species_html, "html.parser")
+
+    species = species_soup.find_all("span", {'class': 'toctext'})
+    for specie in species:
+        name = specie.get_text().strip()
+        if name not in ('References', 'External links', 'Bibliography'):
+            species_list.append([name])
+    return species_list
+
+species_total = []
+
+for url in species_urls:
+    species_sublist = parse_species(url)
+    species_total += species_sublist
+
+print (species_total)
