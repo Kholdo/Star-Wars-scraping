@@ -37,5 +37,6 @@ end_time = datetime.now()
 print (f'End time: {end_time}')
 total_time = end_time - start_time
 print (f'Finished in: {total_time}')
+#Finished in: 0:00:00.437466
 
 
