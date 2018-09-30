@@ -9,3 +9,6 @@ Python Version: 3.6
 import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
+
+url_planets = 'http://starwars.wikia.com/wiki/List_of_planets'
+
