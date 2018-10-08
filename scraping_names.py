@@ -25,7 +25,7 @@ while len(names)<100000:
         one_hundred = driver.find_element_by_xpath("//input[@name='choice' and @value='100']")
         one_hundred.click()
 
-        #Click on Radio button with value 100
+        #Click on Generate! button
         generate = driver.find_element_by_xpath("//input[@name='submit' and @value='Generate!']")
         generate.click()
 
